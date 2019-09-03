@@ -12,7 +12,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/posts" do
-    erb :full_list
+    @posts = Post.all
+    erb :post_list
+  end
+
+  get '/recipes' do
+    @recipes = Recipe.all
+    erb :index
   end
 
 end

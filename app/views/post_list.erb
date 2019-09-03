@@ -1,0 +1,9 @@
+#iterate through Post.all and list all existing posts
+
+<h1>Recipes List</h1>
+
+<% @posts.each do |post| %>
+    
+    <a href="/posts/<%= post.id %>"<%= post.name %></a><br>
+
+<% end %>
