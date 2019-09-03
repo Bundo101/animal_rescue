@@ -1,0 +1,53 @@
+# App Overview
+
+Build an app to find homes for rescue animals 
+
+# User Stories
+
+
+
+## Users will be able to...
+- sign up, log in and log out
+
+
+## As a user I can
+- create an animal post
+- view all my posts
+- edit an animal post
+- delete an animal post
+
+
+# Wireframing
+
+## Models will be User and Post
+
+## User
+
+### Attributes
+
+- name
+- username
+- password (use bcrypt)
+
+### Associations
+
+has_many :posts
+
+## Post
+
+### Attributes
+
+- name
+- species
+- age
+- photo_url
+- user_id
+- date_posted(?)
+
+### Associations
+
+belongs_to :user
+
+# MVP
+
+Users can sign up, log in , log out, create posts, edit posts, delete posts
