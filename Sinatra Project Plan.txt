@@ -26,7 +26,7 @@ Build an app to find homes for rescue animals
 ### Attributes
 
 - name
-- username
+- email
 - password (use bcrypt)
 
 ### Associations
