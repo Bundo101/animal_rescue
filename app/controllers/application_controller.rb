@@ -16,21 +16,6 @@ class ApplicationController < Sinatra::Base
     erb :post_list
   end
 
-  get "/login" do
-		erb :login
-	end
-
-  post "/login" do
-    binding.pry
-		user = User.find_by(:username => params[:username])
-		if user && user.authenticate(params[:password])
-			session[:user_id] = user.id
-			redirect "/success"
-		else
-			redirect "/failure"
-		end
-	end
-  
   get "/signup" do
     erb :signup
   end
@@ -44,10 +29,25 @@ class ApplicationController < Sinatra::Base
 			redirect "/failure"
 		end 
   end
+  
+  get "/login" do
+		erb :login
+	end
 
-  # get '/recipes' do
-  #   @recipes = Recipe.all
-  #   erb :index
-  # end
+  post "/login" do
+		user = User.find_by(:username => params[:username])
+		if user #&& user.authenticate(params[:password])
+			#session[:user_id] = user.id
+			redirect "/user_homepage"
+		else
+			redirect "/failure"
+		end
+	end
+  
+  get "/user_homepage" do
+    erb :user_homepage
+  end
+
+  
 
 end

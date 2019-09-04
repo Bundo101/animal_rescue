@@ -15,13 +15,14 @@ ActiveRecord::Schema.define(version: 20190903151702) do
 
   create_table "posts", force: :cascade do |t|
     t.string "name"
-    t.string "species"
+    t.string "colour"
     t.string "age"
+    t.string "gender"
     t.string "user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "email"
     t.string "password_digest"
   end
