@@ -45,7 +45,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
 			redirect "/user_homepage"
 		else
-			redirect "/failure"
+			erb :error
 		end
 	end
   
@@ -56,12 +56,11 @@ class ApplicationController < Sinatra::Base
     else
       erb :error
     end
-    erb :user_homepage
   end
 
   get '/logout' do
     session.clear
     redirect "/"
   end
-
+  
 end
