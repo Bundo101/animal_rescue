@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     erb :signup
   end
 
-  post "/signup" do
+  post "/signup" do  #need to validate user creation
     @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
 		if @user.save
 			redirect "/login"
