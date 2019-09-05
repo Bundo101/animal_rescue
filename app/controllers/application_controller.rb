@@ -5,6 +5,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "kitty"
   end
 
   get "/" do
@@ -38,9 +40,9 @@ class ApplicationController < Sinatra::Base
 	end
 
   post "/login" do
-		user = User.find_by(:username => params[:username])
-		if user && user.authenticate(params[:password])
-			session[:user_id] = user.id
+		@user = User.find_by(username: params[:username])
+    if @user && @user.password == params[:password]
+      session[:user_id] = @user.id
 			redirect "/user_homepage"
 		else
 			redirect "/failure"
@@ -48,6 +50,12 @@ class ApplicationController < Sinatra::Base
 	end
   
   get "/user_homepage" do
+    @current_user = User.find_by_id(session[:user_id])
+    if @current_user
+      erb :user_homepage
+    else
+      erb :error
+    end
     erb :user_homepage
   end
 
