@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
 
   post "/signup" do  #need to validate user creation
     @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-		if @user.save
+		if @user.save && params.values == 3
 			redirect "/login"
 		else
 			redirect "/signup_failure"
@@ -56,6 +56,10 @@ class ApplicationController < Sinatra::Base
     else
       erb :error
     end
+  end
+
+  get "/error" do
+    erb :error
   end
 
   get '/logout' do
