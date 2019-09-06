@@ -22,12 +22,14 @@ class ApplicationController < Sinatra::Base
     erb :signup
   end
 
-  post "/signup" do  #need to validate user creation
+  post "/signup" do  
     @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-		if @user.save && params.values == 3
-			redirect "/login"
+		if @user.save
+      @user.save
+      session[:user_id] = @user.id
+      redirect "/user_homepage"
 		else
-			redirect "/signup_failure"
+			redirect "/error"
 		end 
   end
 
