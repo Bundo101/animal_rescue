@@ -4,9 +4,9 @@
     <h1>Welcome <%= Helpers.current_user(session).username %>!</h1><br>
 
     <h3>Here are the cats you have advertised for adoption:</h3>
+    <!-- need to display @current_users cats here -->
 <% else %>
-    <!-- add redirect to /error route? -->
-
+    <% redirect "/error" %>
 <% end %>
 
 <a href="/logout">Log Out</a>
