@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20190903151702) do
   create_table "posts", force: :cascade do |t|
     t.string "name"
     t.string "colour"
-    t.string "age"
     t.string "gender"
+    t.string "age"
     t.string "user_id"
   end
 

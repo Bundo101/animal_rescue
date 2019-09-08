@@ -6,54 +6,70 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "kitty"
+    set :session_secret, 'kitty'
   end
 
-  get "/" do
+  get '/' do
     erb :index
   end
 
-  get "/posts" do
+  get '/posts' do
     @posts = Post.all
     erb :post_list
   end
 
-  get "/posts/new" do
+  get '/posts/new' do
     erb :new
   end
 
-  get "/signup" do
+  post '/posts' do
+    @post = Post.create(params)
+    redirect "/posts/#{@post.id}"
+  end
+
+  get '/posts/:id' do
+    @post = Post.find_by_id(params[:id])
+    erb :show
+  end
+
+  delete '/posts/:id' do
+    @post = Post.find_by_id(params[:id])
+    @post.delete
+    redirect '/user_homepage'
+  end
+
+  get '/signup' do
     erb :signup
   end
 
-  post "/signup" do  
+  post '/signup' do  
     user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
 		if user.save
-      redirect "/login"
+      redirect '/login'
 		else
-			redirect "/error"
+			redirect '/error'
 		end 
   end
 
-  get "/signup_failure" do
+  get '/signup_failure' do
     erb :signup_failure
   end
   
-  get "/login" do
+  get '/login' do
 		erb :login
 	end
 
-  post "/login" do
+  post '/login' do
 		user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-			redirect "/user_homepage"
+			redirect '/user_homepage'
 		else
 			erb :error
 		end
 	end
   
-  get "/user_homepage" do
+  get '/user_homepage' do
     if logged_in?
       erb :user_homepage
     else
@@ -61,13 +77,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get "/error" do
+  get '/error' do
     erb :error
   end
 
   get '/logout' do
     session.clear
-    redirect "/"
+    redirect '/'
   end
 
   helpers do

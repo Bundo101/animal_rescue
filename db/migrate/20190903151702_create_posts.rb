@@ -3,8 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :name
       t.string :colour
-      t.string :age
       t.string :gender
+      t.string :age
       t.string :user_id
     end
   end

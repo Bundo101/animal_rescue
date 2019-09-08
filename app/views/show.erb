@@ -1,0 +1,7 @@
+<h3>This <%= @post.age %> year old <%= @post.colour %> cat's name is <%= @post.name %>.</h3>
+
+
+<form action="/posts/<%= @post.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
