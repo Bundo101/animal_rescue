@@ -10,7 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    if logged_in?
+      redirect "/user_homepage"
+    else
+      erb :index
+    end
   end
 
   get '/posts' do
@@ -35,7 +39,7 @@ class ApplicationController < Sinatra::Base
   delete '/posts/:id' do
     @post = Post.find_by_id(params[:id])
     @post.delete
-    redirect '/user_homepage'
+    redirect "/user_homepage"
   end
 
   get '/signup' do
@@ -44,8 +48,9 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do  
     user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-		if user.save
-      redirect '/login'
+    if user.save
+      session[:user_id] = user.id
+      redirect '/user_homepage'
 		else
 			redirect '/error'
 		end 
