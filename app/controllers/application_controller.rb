@@ -18,6 +18,10 @@ class ApplicationController < Sinatra::Base
     erb :post_list
   end
 
+  get "/posts/new" do
+    erb :new
+  end
+
   get "/signup" do
     erb :signup
   end
