@@ -94,7 +94,7 @@ class ApplicationController < Sinatra::Base
   get '/user_homepage' do
     if logged_in?
       @posts = Post.all
-      @posts = @posts.reject { |post| post.user_id == current_user.id }
+      @posts = @posts.reject { |post| post.user_id != current_user.id }
       erb :user_homepage
     else
       erb :error

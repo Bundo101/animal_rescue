@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :colour
       t.string :gender
       t.string :age
-      t.string :user_id
+      t.integer :user_id
     end
   end
 end

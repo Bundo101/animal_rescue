@@ -1,7 +1,12 @@
 <h3>This <%= @post.age %> year old <%= @post.colour %> cat's name is <%= @post.name %>.</h3>
 
+<% if logged_in? && current_user.id == @post.user_id %>
+    
+    Click <a href="/posts/<%= @post.id %>/edit">here</a> to edit the details of this post.<br>
 
-<form action="/posts/<%= @post.id %>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-</form>
+    <form action="/posts/<%= @post.id %>" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="delete">
+    </form>
+
+<% end %>
