@@ -2,8 +2,14 @@
 
     <h1>Welcome <%= current_user.username %>!</h1><br>
 
-    <h3>These are your current posts:</h3>
-    
+    <h3>These are your current posts:</h3><br>
+    <% if @posts.any? %>
+        <% @posts.each do |post| %>
+            <h4><%= post.name %></h4><br><br>
+        <% end %>
+    <% else %>
+        <i>You currently have no posts</i>
+    <% end %>
 
     <h3>To put a new cat up for adoption click <a href="/posts/new">here</a></h3>
     <!-- need to display @current_users cats here -->

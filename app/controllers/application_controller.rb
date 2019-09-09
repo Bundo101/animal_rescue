@@ -27,7 +27,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/posts' do
-    @post = Post.create(params)
+    @post = Post.new(params)
+    @post.user = current_user
+    @post.save
     redirect "/posts/#{@post.id}"
   end
 
@@ -40,6 +42,21 @@ class ApplicationController < Sinatra::Base
     @post = Post.find_by_id(params[:id])
     @post.delete
     redirect "/user_homepage"
+  end
+
+  get '/posts/:id/edit' do
+    @post = Post.find_by_id(params[:id])
+    erb :edit
+  end
+
+  patch '/posts/:id' do
+    @post = Post.find_by_id(params[:id])
+    @post.name = params[:name]
+    @post.colour = params[:colour]
+    @post.gender = params[:gender]
+    @post.age = params[:age]
+    @post.save
+    redirect "/posts/#{@post.id}"
   end
 
   get '/signup' do
@@ -76,6 +93,8 @@ class ApplicationController < Sinatra::Base
   
   get '/user_homepage' do
     if logged_in?
+      @posts = Post.all
+      @posts = @posts.reject { |post| post.user_id == current_user.id }
       erb :user_homepage
     else
       erb :error
