@@ -5,7 +5,7 @@
     <h3>These are your current posts:</h3><br>
     <% if @posts.any? %>
         <% @posts.each do |post| %>
-            <h4><%= post.name %></h4><br><br>
+            <h4><a href="/posts/<%= post.id %>"><%= post.name %></a></h4><br><br>
         <% end %>
     <% else %>
         <i>You currently have no posts</i>
