@@ -2,8 +2,10 @@
 
 <h1>Could you give one of these friendly felines a forever home?</h1>
 
-<% @posts.each do |post| %>
-    
-    <a href="/posts/<%= post.id %>"<%= post.name %></a><br>
-
+<% if @posts.any? %>
+    <% @posts.each do |post| %>
+        <h4><a href="/posts/<%= post.id %>"><%= post.name %></a></h4><br><br>
+    <% end %>
+<% else %>
+    <i>There are currently no posts</i>
 <% end %>
