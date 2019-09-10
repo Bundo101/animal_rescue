@@ -3,6 +3,12 @@
 <header><img align="right" src="images/signup_kitty.jpg"></header>
 
 <h3>Register here:</h3>
+
+<% if flash[:error] %>
+  "The following error(s) occurred:"<br>
+  <%= flash[:error] %>
+<% end %>
+
 <form action="/signup" method="POST">
   <input type="text" name="username" placeholder="Username:" required><br><br>
   <input type="email" name="email" placeholder="Email:" required><br><br>
