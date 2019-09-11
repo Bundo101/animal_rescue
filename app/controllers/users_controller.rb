@@ -10,8 +10,7 @@ class UsersController < ApplicationController
           session[:user_id] = user.id
           redirect '/user_homepage'
         else
-          @error = user.errors.full_messages.to_sentence
-          flash[:error] = @error
+          flash[:error] = user.errors.full_messages.to_sentence
           redirect '/signup'
         end 
     end
@@ -26,8 +25,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect '/user_homepage'
         else
-            @error = user.errors.full_messages.to_sentence
-            flash[:error] = @error
+            flash[:error] = "Login failed, please check your details and try again."
             redirect '/login'
         end
     end

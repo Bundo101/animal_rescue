@@ -2,6 +2,11 @@
 
 <header><img align="right" src="images/happy_kitty.jpg"></header>
 
+<% if flash[:error] %>
+  <p>The following error(s) occurred:</p>
+  <p class="error-text"><%= flash[:error] %></p>
+<% end %>
+
 <form action="/login" method="POST">
   <input type="text" name="username" placeholder="Username:" required><br><br>
   <input type="password" name="password" placeholder="Password:" required><br><br>
