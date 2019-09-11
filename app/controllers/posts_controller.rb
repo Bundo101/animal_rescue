@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
 get '/posts' do
     @posts = Post.all
-    erb :post_list
+    erb :'/posts/post_list'
   end
 
   get '/posts/new' do
