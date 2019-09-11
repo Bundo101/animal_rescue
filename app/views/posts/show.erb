@@ -2,16 +2,16 @@
 
 <% if logged_in? && current_user.id == @post.user_id %>
     
-    Click <a href="/posts/<%= @post.id %>/edit">here</a> to edit the details of this post.<br>
+    <p>Click <a href="/posts/<%= @post.id %>/edit">here</a> to edit the details of this post.<p>
 
     <form action="/posts/<%= @post.id %>" method="POST">
         <input id="hidden" type="hidden" name="_method" value="delete">
-        <input type="submit" value="delete">
+        <input type="submit" value="Delete Post">
     </form>
 
 <% else %>
     
     <p>If you would like to contact <%= @post.name %>&#39;s owner their email address is <a href="mailto:<%= @user.email %>? subject=Adopting <%= @post.name %>"><%= @user.email %></a>
-    
+
 <% end %>
 
