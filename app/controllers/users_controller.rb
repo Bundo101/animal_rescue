@@ -36,7 +36,8 @@ class UsersController < ApplicationController
             @posts = @posts.reject { |post| post.user_id != current_user.id }
             erb :'users/user_homepage'
         else
-            redirect '/error'
+            flash[:error] = "Please log in to access that page."
+            redirect '/login'
         end
     end
     
