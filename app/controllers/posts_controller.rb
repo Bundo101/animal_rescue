@@ -39,6 +39,8 @@ get '/posts' do
     if logged_in? && current_user.id == @post.user_id
       erb :'posts/edit'
     else
+      flash[:error] = "Please log in to create or edit existing posts."
+      redirect '/login'
     end
   end
 
