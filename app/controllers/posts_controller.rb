@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
 get '/posts' do
     @posts = Post.all
-    erb :'/posts/post_list'
+    erb :'/posts/index'
   end
 
   get '/posts/new' do
@@ -34,10 +34,9 @@ get '/posts' do
   end
 
   delete '/posts/:id' do
-    binding.pry
     @post = Post.find_by_id(params[:id])
     @post.delete
-    redirect '/users/'
+    redirect "/users/#{current_user.id}"
   end
 
   get '/posts/:id/edit' do

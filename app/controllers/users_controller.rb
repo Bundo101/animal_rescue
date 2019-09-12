@@ -47,9 +47,7 @@ class UsersController < ApplicationController
     end
 
     get '/*' do
-        "Ooooppss that address doesn't seem to be valid"
-        
-        #insert message plus link to homepage 
+        redirect to '/'
     end
 
 end
