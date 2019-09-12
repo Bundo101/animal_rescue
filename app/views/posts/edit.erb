@@ -1,3 +1,6 @@
+<div><img align="right" src="/images/pika_kitty.jpg"></div>
+
+
 <form action="/posts/<%= @post.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <input type="text" name="name" value="<%= @post.name %>">
