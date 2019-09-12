@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
         if user.save
           session[:user_id] = user.id
-          redirect '/user_homepage'
+          redirect "/users/#{user.id}"
         else
           flash[:error] = user.errors.full_messages.to_sentence
           redirect '/signup'
@@ -23,18 +23,18 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect '/user_homepage'
+            redirect "/users/#{user.id}"
         else
             flash[:error] = "Login failed, please check your details and try again."
             redirect '/login'
         end
     end
       
-    get '/user_homepage' do
+    get '/users/:id' do
         if logged_in?
             @posts = Post.all
             @posts = @posts.reject { |post| post.user_id != current_user.id }
-            erb :'users/user_homepage'
+            erb :'users/show'
         else
             flash[:error] = "Please log in to access that page."
             redirect '/login'

@@ -2,6 +2,11 @@
 
 <h1>Could you give one of these friendly felines a forever home?</h1>
 
+<% if flash[:error] %>
+  <p>The following error(s) occurred:</p>
+  <p class="error-text"><%= flash[:error] %></p>
+<% end %>
+
 <% if @posts.any? %>
     <% @posts.each do |post| %>
         <h4><a href="/posts/<%= post.id %>"><%= post.name %></a></h4><br><br>

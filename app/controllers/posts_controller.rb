@@ -25,13 +25,19 @@ get '/posts' do
   get '/posts/:id' do
     @post = Post.find_by_id(params[:id])
     @user = User.find_by_id(@post.user_id)
-    erb :'posts/show'
+    if @post
+      erb :'posts/show'
+    else
+      flash[:error] = "Post not found"
+      redirect '/'
+    end
   end
 
   delete '/posts/:id' do
+    binding.pry
     @post = Post.find_by_id(params[:id])
     @post.delete
-    redirect '/user_homepage'
+    redirect '/users/'
   end
 
   get '/posts/:id/edit' do
@@ -39,7 +45,7 @@ get '/posts' do
     if logged_in? && current_user.id == @post.user_id
       erb :'posts/edit'
     else
-      flash[:error] = "Please log in to create or edit existing posts."
+      flash[:error] = "Please log in to edit existing posts."
       redirect '/login'
     end
   end
