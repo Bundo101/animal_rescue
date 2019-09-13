@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     end
 
     get '/*' do
+        flash[:error] = "That page doesn't seem to exist."
         redirect to '/'
     end
 

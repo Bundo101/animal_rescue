@@ -1,5 +1,10 @@
 <div><img align="right" src="images/pika_kitty.jpg"></div>
 
+<% if flash[:error] %>
+  <p>The following error(s) occurred:</p>
+  <p class="error-text"><%= flash[:error] %></p>
+<% end %>
+
 <h1>Save a kitty!</h1> 
 <h1>Enhance your karma!</h1><br>
 
