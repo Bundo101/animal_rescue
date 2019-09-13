@@ -20,6 +20,10 @@
 
       <footer class="branding">
         <small><strong><a href='/'>Homepage</a></strong></small>
+        <small><strong><a href='/posts'>All Posts</a></strong></small>
+        <% if logged_in? %>
+          <small><strong><a href='/logout'>Logout</a></strong></small>
+        <% end %>
         <small><span style='float:right;'>&copy; 2019 <strong>AnimalRescue</strong></span></small>
       </footer>
     </div>
