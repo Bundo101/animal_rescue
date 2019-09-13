@@ -1,6 +1,6 @@
 <header><img align="right" src="/images/ginger_kitten.jpg"></header>
 
-<h3>This <%= @post.age %> year old <%= @post.colour %> cat's name is <%= @post.name %>.</h3>
+<h3>This <%= @post.age %> year old <%= @post.colour %> cat's name is <%= @post.name %>.</h3><br>
 
 <% if logged_in? && current_user.id == @post.user_id %>
     
@@ -16,4 +16,7 @@
     <p>If you would like to contact <%= @post.name %>&#39;s owner their email address is <a href="mailto:<%= @user.email %>?subject=Adopting <%= @post.name %>"><%= @user.email %></a></p>
 
 <% end %>
+
+<br>
+<p>To return to the list of all available cats click <a href="/posts">here</a></p>
 
