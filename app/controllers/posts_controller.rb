@@ -23,7 +23,6 @@ get '/posts' do
   end
 
   get '/posts/:id' do
-    binding.pry
     @post = Post.find_by_id(params[:id])
     @user = User.find_by_id(@post.user_id)
     if @post
