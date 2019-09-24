@@ -7,6 +7,11 @@
   <p class="error-text"><%= flash[:error] %></p>
 <% end %>
 
+<form action="/posts" method="GET">
+    <input type="text" name="cat_name" placeholder="Search:"><br><br>
+    <input type="submit" value=" Search ">
+</form>
+
 <% if @posts.any? %>
     <% @posts.each do |post| %>
         <h4><a href="/posts/<%= post.id %>"><%= post.name %></a></h4><br><br>

@@ -2,7 +2,13 @@ class PostsController < ApplicationController
 
 
 get '/posts' do
-    @posts = Post.all
+    #binding.pry
+    if params[:cat_name]
+      #@posts = Post.all.select { |post| post.name.downcase.include?(params[:cat_name].downcase) }
+      @posts = Post.where('name LIKE ?', "%#{params[:cat_name]}%")
+    else  
+      @posts = Post.all
+    end
     erb :'/posts/index'
   end
 
